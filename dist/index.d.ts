@@ -46,7 +46,7 @@ export declare class U8ImageData {
  * The image loader class.
  * If it's used like an instance there is caching of an image request as long as instance is alive.
  */
-export declare class ImageLoader {
+export declare class RawImageLoader {
     private __cache;
     private __useCache;
     /**

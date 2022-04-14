@@ -16,7 +16,7 @@ var __webpack_exports__ = {};
 var exports = __webpack_exports__;
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.ImageLoader = exports.U8ImageData = exports.U32ImageData = exports.RawImageLoaderOptions = void 0;
+exports.RawImageLoader = exports.U8ImageData = exports.U32ImageData = exports.RawImageLoaderOptions = void 0;
 /**
  * Image loader options.
  */
@@ -39,7 +39,7 @@ exports.U8ImageData = U8ImageData;
  * The image loader class.
  * If it's used like an instance there is caching of an image request as long as instance is alive.
  */
-class ImageLoader {
+class RawImageLoader {
     /**
      * The constructor
      * @param { RawImageLoaderOptions } options
@@ -58,7 +58,7 @@ class ImageLoader {
      * @returns { Uint32Array }
      */
     convertU8ToU32Bytes(bytes) {
-        return ImageLoader.convertU8ToU32Bytes(bytes);
+        return RawImageLoader.convertU8ToU32Bytes(bytes);
     }
     /**
      * Helper method for working with bytes.
@@ -164,7 +164,7 @@ class ImageLoader {
      * @returns { IU8ImageData }
      */
     loadAndGetU32BytesAsyncFromHTMLImage(canvas, image) {
-        return ImageLoader.loadAndGetU32BytesAsyncFromHTMLImage(canvas, image);
+        return RawImageLoader.loadAndGetU32BytesAsyncFromHTMLImage(canvas, image);
     }
     /**
      * Load an image from source. Can also reject promise if src is not found.
@@ -190,7 +190,7 @@ class ImageLoader {
   * @returns { Promise<IU8ImageData> }
   */
     static async loadAndGetBytesAsync(canvas, src) {
-        const image = await ImageLoader.loadImageAsync(src);
+        const image = await RawImageLoader.loadImageAsync(src);
         const ctx = canvas.getContext("2d");
         ctx.save();
         canvas.width = image.width;
@@ -211,10 +211,10 @@ class ImageLoader {
      * @returns { Promise<IU32ImageData> }
      */
     static async loadAndGetU32BytesAsync(canvas, src) {
-        const u8_data_result = await ImageLoader.loadAndGetBytesAsync(canvas, src);
+        const u8_data_result = await RawImageLoader.loadAndGetBytesAsync(canvas, src);
         const data = u8_data_result.data;
         return {
-            data: ImageLoader.convertU8ToU32Bytes(data),
+            data: RawImageLoader.convertU8ToU32Bytes(data),
             width: u8_data_result.width,
             height: u8_data_result.height,
         };
@@ -244,7 +244,7 @@ class ImageLoader {
         };
     }
 }
-exports.ImageLoader = ImageLoader;
+exports.RawImageLoader = RawImageLoader;
 
 })();
 

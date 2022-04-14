@@ -57,7 +57,7 @@ export class U8ImageData
  * The image loader class.
  * If it's used like an instance there is caching of an image request as long as instance is alive.
  */
-export class ImageLoader
+export class RawImageLoader
 {
     private __cache: { [id: string]: Promise<HTMLImageElement> } = {};
 
@@ -82,7 +82,7 @@ export class ImageLoader
      */
     public convertU8ToU32Bytes(bytes: Uint8ClampedArray): Uint32Array 
     {
-        return ImageLoader.convertU8ToU32Bytes(bytes);
+        return RawImageLoader.convertU8ToU32Bytes(bytes);
     }
 
     /**
@@ -220,7 +220,7 @@ export class ImageLoader
      */
     public loadAndGetU32BytesAsyncFromHTMLImage(canvas: HTMLCanvasElement, image: HTMLImageElement): U32ImageData
     {
-        return ImageLoader.loadAndGetU32BytesAsyncFromHTMLImage(canvas, image);
+        return RawImageLoader.loadAndGetU32BytesAsyncFromHTMLImage(canvas, image);
     }
 
     /**
@@ -253,7 +253,7 @@ export class ImageLoader
   */
     public static async loadAndGetBytesAsync(canvas: HTMLCanvasElement, src: string): Promise<U8ImageData>
     {
-        const image = await ImageLoader.loadImageAsync(src);
+        const image = await RawImageLoader.loadImageAsync(src);
 
         const ctx = canvas.getContext("2d");
         ctx.save();
@@ -279,11 +279,11 @@ export class ImageLoader
      */
     public static async loadAndGetU32BytesAsync(canvas: HTMLCanvasElement, src: string): Promise<U32ImageData>
     {
-        const u8_data_result = await ImageLoader.loadAndGetBytesAsync(canvas, src);
+        const u8_data_result = await RawImageLoader.loadAndGetBytesAsync(canvas, src);
         const data = u8_data_result.data;
 
         return {
-            data: ImageLoader.convertU8ToU32Bytes(data),
+            data: RawImageLoader.convertU8ToU32Bytes(data),
             width: u8_data_result.width,
             height: u8_data_result.height,
         };
