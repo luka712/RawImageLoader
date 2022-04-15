@@ -65,13 +65,13 @@ export class RawImageLoader
 
     /**
      * The constructor 
-     * @param { RawImageLoaderOptions } options 
+     * @param { RawImageLoaderOptions | null | undefined } options 
      * 
      * by default cache is used.
      */
     constructor(options?: RawImageLoaderOptions)
     {
-        this.__useCache = options.useCache ?? true;
+        this.__useCache = options?.useCache ?? true;
     }
 
     /**
@@ -246,11 +246,11 @@ export class RawImageLoader
     }
 
     /**
-  * Load the image and get image bytes as Uint8ClampedArray
-  * @param { HTMLCanvasElement } canvas 
-  * @param { string } src 
-  * @returns { Promise<IU8ImageData> }
-  */
+     * Load the image and get image bytes as Uint8ClampedArray
+     * @param { HTMLCanvasElement } canvas 
+     * @param { string } src 
+     * @returns { Promise<IU8ImageData> }
+     */
     public static async loadAndGetBytesAsync(canvas: HTMLCanvasElement, src: string): Promise<U8ImageData>
     {
         const image = await RawImageLoader.loadImageAsync(src);
@@ -291,11 +291,11 @@ export class RawImageLoader
 
 
     /**
-   * Loads and get U32 bytes from HTMLImage 
-   * @param { HTMLCanvasElement } canvas 
-   * @param { HTMLImageElement } image 
-   * @returns { IU8ImageData }
-   */
+     * Loads and gets U32 bytes from HTMLImage 
+     * @param { HTMLCanvasElement } canvas 
+     * @param { HTMLImageElement } image 
+     * @returns { IU8ImageData }
+     */
     public static loadAndGetU32BytesAsyncFromHTMLImage(canvas: HTMLCanvasElement, image: HTMLImageElement): U32ImageData
     {
         const ctx = canvas.getContext("2d");

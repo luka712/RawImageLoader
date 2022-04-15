@@ -51,7 +51,7 @@ export declare class RawImageLoader {
     private __useCache;
     /**
      * The constructor
-     * @param { RawImageLoaderOptions } options
+     * @param { RawImageLoaderOptions | null | undefined } options
      *
      * by default cache is used.
      */
@@ -104,11 +104,11 @@ export declare class RawImageLoader {
      */
     static loadImageAsync(src: string): Promise<HTMLImageElement>;
     /**
-  * Load the image and get image bytes as Uint8ClampedArray
-  * @param { HTMLCanvasElement } canvas
-  * @param { string } src
-  * @returns { Promise<IU8ImageData> }
-  */
+     * Load the image and get image bytes as Uint8ClampedArray
+     * @param { HTMLCanvasElement } canvas
+     * @param { string } src
+     * @returns { Promise<IU8ImageData> }
+     */
     static loadAndGetBytesAsync(canvas: HTMLCanvasElement, src: string): Promise<U8ImageData>;
     /**
      * Load the image and get image bytes as Uint32Array
@@ -118,10 +118,10 @@ export declare class RawImageLoader {
      */
     static loadAndGetU32BytesAsync(canvas: HTMLCanvasElement, src: string): Promise<U32ImageData>;
     /**
-   * Loads and get U32 bytes from HTMLImage
-   * @param { HTMLCanvasElement } canvas
-   * @param { HTMLImageElement } image
-   * @returns { IU8ImageData }
-   */
+     * Loads and gets U32 bytes from HTMLImage
+     * @param { HTMLCanvasElement } canvas
+     * @param { HTMLImageElement } image
+     * @returns { IU8ImageData }
+     */
     static loadAndGetU32BytesAsyncFromHTMLImage(canvas: HTMLCanvasElement, image: HTMLImageElement): U32ImageData;
 }
